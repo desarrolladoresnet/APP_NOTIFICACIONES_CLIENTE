@@ -1,37 +1,35 @@
-import { useState } from 'react'
-import './App.css'
-import { NavBar } from './components/navbar/navbar'
-import { Bancaribe } from './pages/Bancaribe'
-import { Banesco } from './pages/Banesco'
-import { Tesoro } from './pages/Tesoro'
-import { BDV } from './pages/BDV'
-import { General } from './pages/General'
+import { Navbar } from "./components/navbar/navbar";
+import { usePagesStore } from "./zustand";
+import { BancaribePage, BdvPage, HomePage } from "./pages";
 
-export interface BankSelector {
-  general: boolean;
-  bancaribe: boolean;
-  banesco: boolean;
-  tesoro: boolean;
-  bdv: boolean;
-}
+// interface PageSelector {
+//   home: boolean;
+//   bdv: boolean;
+//   bancaribe: boolean;
+// }
 
 function App() {
-  const [bank, setBank] = useState<BankSelector>({
-    general: true,
-    bdv: false,
-    bancaribe: false,
-    tesoro: false,
-    banesco: false,
-  });
+
+  const { home, bdv, bancaribe } = usePagesStore();
+
+
+  const renderCurrentPage = () => {
+    if (home) return <HomePage />;
+    if (bdv) return <BdvPage />;
+    if (bancaribe) return <BancaribePage />;
+    return <HomePage />; // Fallback
+  };
 
   return (
     <>
-      <NavBar bank={bank} setBank={setBank} />
-      {bank.general && <General />}
-      {bank.bdv && <BDV />}
-      {bank.banesco && <Banesco />}
-      {bank.tesoro && <Tesoro />}
-      {bank.bancaribe && <Bancaribe />}
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <main>
+          {renderCurrentPage()}
+        </main>
+      </main>
     </>
   );
 }
