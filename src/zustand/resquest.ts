@@ -1,4 +1,4 @@
-import process from "process";
+
 
 export enum Banks {
     bdv = "bdv",
@@ -28,12 +28,12 @@ const setUrlQuerys = (data: RequestParams): string => {
 export const ZustandRequest = async (data: RequestParams, bank: Banks): Promise<any> => {
     const url = import.meta.env.VITE_URL || null; // 🔥 usa prefijo VITE_
     const api_key = import.meta.env.VITE_API_KEY || null;
-    
-    console.log(url)
-    console.log(api_key)
-    console.log(bank)
 
-    if (url === null  || api_key === null) {
+    // console.log(url)
+    // console.log(api_key)
+    // console.log(bank)
+
+    if (url === null || api_key === null) {
         console.log("Faltan variable de entorno");
         throw Error("Faltan variable de entorno");
     }
@@ -43,12 +43,12 @@ export const ZustandRequest = async (data: RequestParams, bank: Banks): Promise<
     const bankUrl = `${url}/${bank}`;
     const querys = setUrlQuerys(data);
 
-    const finalUrl = bankUrl + querys + "/notificaciones";
+    const finalUrl = bankUrl + "/notificaciones";
 
-    console.log("finalUrl",finalUrl)
+    // console.log("finalUrl",finalUrl)
 
     let response: Response | null = null;
-    console.log("final url", finalUrl)
+    // console.log("final url", finalUrl)
 
     try {
         response = await fetch(finalUrl, {
@@ -58,8 +58,8 @@ export const ZustandRequest = async (data: RequestParams, bank: Banks): Promise<
                 "Content-Type": "application/json"
             },
         });
-        console.log("headers", api_key)
-        console.log("response", response)
+        // console.log("headers", api_key)
+        // console.log("response", response)
 
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
