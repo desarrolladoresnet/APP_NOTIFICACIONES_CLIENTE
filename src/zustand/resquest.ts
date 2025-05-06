@@ -6,11 +6,11 @@ export enum Banks {
 }
 
 export interface RequestParams {
-    referencia: string | null,
-    fecha: string | null,
-    telefono_cliente: string | null,
-    id_cliente: string | null,
-    pagina: string | null,
+    referencia?: string | null,
+    fecha?: string | null,
+    telefono_cliente?: string | null,
+    id_cliente?: string | null,
+    pagina?: string | number | null,
 }
 
 // Mejoramos la función para construir la URL con parámetros
@@ -29,10 +29,6 @@ export const ZustandRequest = async (data: RequestParams, bank: Banks): Promise<
     const url = import.meta.env.VITE_URL || null; // 🔥 usa prefijo VITE_
     const api_key = import.meta.env.VITE_API_KEY || null;
 
-    // console.log(url)
-    // console.log(api_key)
-    // console.log(bank)
-
     if (url === null || api_key === null) {
         console.log("Faltan variable de entorno");
         throw Error("Faltan variable de entorno");
@@ -43,7 +39,7 @@ export const ZustandRequest = async (data: RequestParams, bank: Banks): Promise<
     const bankUrl = `${url}/${bank}`;
     const querys = setUrlQuerys(data);
 
-    const finalUrl = bankUrl + "/notificaciones";
+    const finalUrl = bankUrl + "/notificaciones" + querys;
 
     // console.log("finalUrl",finalUrl)
 
