@@ -32,7 +32,7 @@ export const RequestParamsForm: React.FC<RequestParamsFormProps> = ({
         const { name, value } = e.target;
         setParams((prev) => ({
             ...prev,
-            [name]: value === '' ? null : value,
+            [name]: value === '' ? null : value.trim(),
         }));
     };
 

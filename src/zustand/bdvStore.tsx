@@ -1,7 +1,8 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 import { Pagination } from './pagination';
 
 export type BDVPaymentData = {
+    id: number;
     banco_origen: string;
     referencia_origen: string;
     id_cliente: string;
