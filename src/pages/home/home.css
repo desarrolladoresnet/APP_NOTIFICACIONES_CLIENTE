@@ -1,0 +1,259 @@
+/* Variables globales */
+:root {
+    --primary: #3474fc;
+    --primary-dark: #2c48ff;
+    --dark: #1c1c1c;
+    --dark-alt: #201c1c;
+    --white: #ffffff;
+    --light-gray: #f5f7fa;
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* Estilos generales */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--white);
+    color: var(--dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Contenedor principal */
+  .home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Estilos del header */
+  .home-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(52, 116, 252, 0.2);
+  }
+  
+  .home-title {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-subtitle {
+    color: var(--dark-alt);
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  
+  /* Secciones */
+  .home-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .section-title {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+  }
+  
+  .section-title .icon {
+    margin-right: 0.5rem;
+  }
+  
+  /* Índice de navegación */
+  .index-nav {
+    padding: 1rem 0;
+  }
+  
+  .index-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .index-item {
+    margin-bottom: 0.8rem;
+  }
+  
+  .index-link {
+    color: var(--dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-weight: 500;
+  }
+  
+  .index-link:hover {
+    background-color: rgba(52, 116, 252, 0.1);
+    color: var(--primary);
+    transform: translateX(5px);
+  }
+  
+  .index-link .icon {
+    margin-right: 0.8rem;
+  }
+  
+  /* Cuadrícula de bancos */
+  .banks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .bank-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--primary);
+  }
+  
+  .bank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(52, 116, 252, 0.2);
+  }
+  
+  .bank-name {
+    color: var(--dark);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .bank-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .bank-link {
+    display: inline-block;
+    color: var(--white);
+    background-color: var(--primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .bank-link:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  /* Tarjetas de instrucciones */
+  .instructions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .instruction-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  
+  .instruction-title {
+    color: var(--primary);
+    margin-top: 0;
+    border-bottom: 1px solid rgba(52, 116, 252, 0.2);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Búsquedas avanzadas */
+  .search-info {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  
+  .search-subtitle {
+    color: var(--primary);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-list {
+    padding-left: 1.5rem;
+  }
+  
+  .feature-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .filter-card {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    border-left: 3px solid var(--primary-dark);
+  }
+  
+  .filter-card h4 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .filter-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .search-tip {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(52, 116, 252, 0.05);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary);
+  }
+  
+  .search-tip p {
+    margin: 0;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .home-container {
+      padding: 1rem;
+    }
+    
+    .banks-grid,
+    .instructions-container,
+    .filters-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .home-title {
+      font-size: 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }

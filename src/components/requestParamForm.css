@@ -1,0 +1,223 @@
+/* Variables para el formulario genérico que funciona con todos los bancos */
+:root {
+    /* Colores base */
+    --primary-blue: #3474fc;
+    --darker-blue: #2c48ff;
+    --dark-text: #1c1c1c;
+    --dark-alt: #201c1c;
+    
+    /* Colores genéricos para el formulario */
+    --form-bg: #f5f7fa;
+    --form-input-bg: #ffffff;
+    --form-border: #e0e0e0;
+    --form-focus: #3474fc;
+    --form-text: #1c1c1c;
+    
+    /* Colores de acción */
+    --button-primary: #3474fc;
+    --button-hover: #2c48ff;
+    --button-disabled: #a0a0a0;
+    
+    /* Valores de espaciado y tamaños */
+    --border-radius: 8px;
+    --input-height: 40px;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    background-color: var(--form-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Estilos del formulario */
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"],
+  input[type="date"] {
+    height: var(--input-height);
+    padding: 0 1rem;
+    border: 1px solid var(--form-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--form-text);
+    background-color: var(--form-input-bg);
+    transition: var(--transition);
+  }
+  
+  input[type="text"]:focus,
+  input[type="date"]:focus {
+    outline: none;
+    border-color: var(--form-focus);
+    box-shadow: 0 0 0 2px rgba(52, 116, 252, 0.2);
+  }
+  
+  input[type="date"] {
+    font-family: inherit;
+  }
+  
+  /* Botón de búsqueda */
+  .search-button {
+    background-color: var(--button-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0 1.5rem;
+    height: var(--input-height);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+  
+  .search-button:hover {
+    background-color: var(--button-hover);
+  }
+  
+  /* Sección de resultados y paginación */
+  .results-section {
+    margin-top: 2rem;
+  }
+  
+  /* Controles de paginación */
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--form-bg);
+    border-radius: var(--border-radius);
+  }
+  
+  .pagination-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--dark-alt);
+  }
+  
+  .page-indicator {
+    padding: 0.5rem 1rem;
+    background-color: var(--form-input-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    font-weight: 500;
+  }
+  
+  .pagination-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--form-input-bg);
+    color: var(--button-primary);
+    border: 1px solid var(--button-primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+  
+  .pagination-button:hover:not(:disabled) {
+    background-color: var(--button-primary);
+    color: white;
+  }
+  
+  .pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    border-color: var(--button-disabled);
+    color: var(--button-disabled);
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    form {
+      grid-template-columns: 1fr;
+    }
+    
+    .pagination-controls {
+      flex-direction: column;
+    }
+    
+    .search-button {
+      width: 100%;
+    }
+  }
+  
+  /* Clase para adaptar los colores según el banco activo */
+  .bdv-theme .search-button {
+    background-color: var(--bdv-primary, #e31b23);
+  }
+  
+  .bdv-theme .search-button:hover {
+    background-color: var(--bdv-hover, #c0151d);
+  }
+  
+  .bdv-theme input[type="text"]:focus,
+  .bdv-theme input[type="date"]:focus {
+    border-color: var(--bdv-primary, #e31b23);
+    box-shadow: 0 0 0 2px rgba(227, 27, 35, 0.2);
+  }
+  
+  .bdv-theme .pagination-button {
+    color: var(--bdv-primary, #e31b23);
+    border-color: var(--bdv-primary, #e31b23);
+  }
+  
+  .bdv-theme .pagination-button:hover:not(:disabled) {
+    background-color: var(--bdv-primary, #e31b23);
+  }
+  
+  /* Tema para Bancaribe */
+  .bancaribe-theme .search-button {
+    background-color: var(--bancaribe-primary, #ff6600);
+  }
+  
+  .bancaribe-theme .search-button:hover {
+    background-color: var(--bancaribe-hover, #e35c00);
+  }
+  
+  .bancaribe-theme input[type="text"]:focus,
+  .bancaribe-theme input[type="date"]:focus {
+    border-color: var(--bancaribe-primary, #ff6600);
+    box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.2);
+  }
+  
+  .bancaribe-theme .pagination-button {
+    color: var(--bancaribe-primary, #ff6600);
+    border-color: var(--bancaribe-primary, #ff6600);
+  }
+  
+  .bancaribe-theme .pagination-button:hover:not(:disabled) {
+    background-color: var(--bancaribe-primary, #ff6600);
+  }

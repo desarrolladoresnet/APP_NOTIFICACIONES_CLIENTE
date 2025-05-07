@@ -1,4 +1,7 @@
-export const HomePage = () => {
+import React from 'react';
+import './home.css'; // Asegúrate de importar el archivo CSS que contiene los estilos
+
+export const HomePage: React.FC = () => {
   return (
     <section className="home-container">
       <header className="home-header">

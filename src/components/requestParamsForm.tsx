@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { RequestParams } from '../zustand';
 import { Pagination } from '../zustand/pagination';
+import './requestParamForm.css';
 
 interface RequestParamsFormProps {
     initialValues?: RequestParams;
-    pagination?: Pagination | null ; // Recibimos los datos de paginación
+    pagination?: Pagination | null;
     onSubmit: (params: RequestParams) => void;
-    onPageChange: (page: number) => void; // Nueva prop para cambiar de página
+    onPageChange: (page: number) => void;
+    bankTheme?: 'default' | 'bdv' | 'bancaribe'; // Nueva prop para el tema del banco
 }
 
 export const RequestParamsForm: React.FC<RequestParamsFormProps> = ({
@@ -15,11 +17,12 @@ export const RequestParamsForm: React.FC<RequestParamsFormProps> = ({
         fecha: null,
         telefono_cliente: null,
         id_cliente: null,
-        pagina: 1, // Página por defecto 1
+        pagina: 1,
     },
     pagination,
     onSubmit,
     onPageChange,
+    bankTheme = 'default', // Tema por defecto
 }) => {
     const [params, setParams] = useState<RequestParams>(initialValues);
 
@@ -47,19 +50,23 @@ export const RequestParamsForm: React.FC<RequestParamsFormProps> = ({
         onPageChange(newPage);
     };
 
+    // Determinar la clase del tema basado en el banco
+    const themeClass = bankTheme === 'default' ? '' : `${bankTheme}-theme`;
+
     return (
-        <div>
+        <div className={`form-container ${themeClass}`}>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label>Referencia:</label>
                     <input
                         type="text"
                         name="referencia"
                         value={params.referencia ?? ''}
                         onChange={handleChange}
+                        placeholder="Número de referencia"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Fecha:</label>
                     <input
                         type="date"
@@ -68,47 +75,53 @@ export const RequestParamsForm: React.FC<RequestParamsFormProps> = ({
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Teléfono Cliente:</label>
                     <input
                         type="text"
                         name="telefono_cliente"
                         value={params.telefono_cliente ?? ''}
                         onChange={handleChange}
+                        placeholder="Ej: 04141234567"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>ID Cliente:</label>
                     <input
                         type="text"
                         name="id_cliente"
                         value={params.id_cliente ?? ''}
                         onChange={handleChange}
+                        placeholder="Cédula o RIF"
                     />
                 </div>
                 
-                <button type="submit">Buscar</button>
+                <button className="search-button" type="submit">
+                    <span className="icon">🔍</span> Buscar
+                </button>
             </form>
 
             {/* Controles de paginación */}
             {pagination && (
                 <div className="pagination-controls">
                     <button 
+                        className="pagination-button"
                         disabled={pagination.current_page === 1}
                         onClick={() => handlePageChange(pagination.current_page - 1)}
                     >
-                        Anterior
+                        ← Anterior
                     </button>
                     
-                    <span>
+                    <span className="page-indicator">
                         Página {pagination.current_page} de {pagination.total_pages}
                     </span>
                     
                     <button 
+                        className="pagination-button"
                         disabled={pagination.current_page >= pagination.total_pages}
                         onClick={() => handlePageChange(pagination.current_page + 1)}
                     >
-                        Siguiente
+                        Siguiente →
                     </button>
 
                     <div className="pagination-info">

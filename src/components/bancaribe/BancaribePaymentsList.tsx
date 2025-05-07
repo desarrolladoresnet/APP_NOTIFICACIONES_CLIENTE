@@ -8,53 +8,109 @@ interface BancaribePaymentsListProps {
 
 export const BancaribePaymentsList: React.FC<BancaribePaymentsListProps> = ({ payments, success }) => {
     if (payments.length === 0) {
-        return <p>No hay pagos disponibles</p>;
+        return (
+            <div style={{
+                padding: '15px',
+                margin: '15px 0',
+                backgroundColor: '#e8f4f8',
+                border: '1px solid #d1e7f0',
+                borderRadius: '5px',
+                color: '#0c5460',
+                textAlign: 'center'
+            }}>
+                No hay pagos disponibles
+            </div>
+        );
     }
 
     return (
         <>
-            {success ?
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Banco Origen</th>
-                            <th>Referencia Origen</th>
-                            <th>Teléfono Cliente</th>
-                            <th>Teléfono Comercio</th>
-                            <th>Cuenta Acreedor</th>
-                            <th>Monto</th>
-                            <th>Moneda</th>
-                            <th>Fecha Bancaribe</th>
-                            <th>Hora Bancaribe</th>
-                            <th>Tipo de Pago</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {payments.map((payment) => (
-                            <tr key={payment.id}>
-                                <td>{payment.id}</td>
-                                <td>{payment.origin_bank_code} - {payment.bank_name}</td>
-                                <td>{payment.origin_bank_reference}</td>
-                                <td>{payment.client_phone}</td>
-                                <td>{payment.commerce_phone}</td>
-                                <td>{payment.creditor_account}</td>
-                                <td>{payment.amount.toFixed(2)}</td>
-                                <td>{payment.currency_code}</td>
-                                <td>{payment.date_bancaribe || payment.date}</td>
-                                <td>{payment.time_bancaribe || payment.time}</td>
-                                <td>{payment.payment_type}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                :
-                null
-            }
+            {success ? (
+                <div style={{
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+                    marginBottom: '20px'
+                }}>
+                    <div style={{
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        padding: '15px 20px',
+                        fontSize: '18px',
+                        fontWeight: 'bold'
+                    }}>
+                        Lista de Pagos
+                    </div>
+                    <div>
+                        <div style={{ overflowX: 'auto' }}>
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '14px'
+                            }}>
+                                <thead style={{ backgroundColor: '#f8f9fa' }}>
+                                    <tr style={{ borderBottom: '2px solid #dee2e6' }}>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>ID</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Banco Origen</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Referencia Origen</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Teléfono Cliente</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Teléfono Comercio</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Cuenta Acreedor</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Monto</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Moneda</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Fecha Bancaribe</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Hora Bancaribe</th>
+                                        <th style={{ padding: '12px 15px', textAlign: 'left', color: '#007bff' }}>Tipo de Pago</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {payments.map((payment, index) => (
+                                        <tr 
+                                            key={payment.id} 
+                                            style={{ 
+                                                backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white',
+                                                borderBottom: '1px solid #dee2e6'
+                                            }}
+                                        >
+                                            <td style={{ padding: '12px 15px' }}>{payment.id}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.origin_bank_code} - {payment.bank_name}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.origin_bank_reference}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.client_phone}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.commerce_phone}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.creditor_account}</td>
+                                            <td style={{ 
+                                                padding: '12px 15px', 
+                                                fontWeight: 'bold', 
+                                                color: '#28a745' 
+                                            }}>
+                                                {payment.amount.toFixed(2)}
+                                            </td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.currency_code}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.date_bancaribe || payment.date}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.time_bancaribe || payment.time}</td>
+                                            <td style={{ padding: '12px 15px' }}>{payment.payment_type}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
 
-            {!success && success !== null &&
-                <h2>No se pudo obtener los pagos</h2>
-            }
+            {!success && success !== null && (
+                <div style={{
+                    padding: '15px',
+                    margin: '15px 0',
+                    backgroundColor: '#f8d7da',
+                    border: '1px solid #f5c6cb',
+                    borderRadius: '5px',
+                    color: '#721c24',
+                    textAlign: 'center'
+                }}>
+                    No se pudo obtener los pagos
+                </div>
+            )}
         </>
     );
 };

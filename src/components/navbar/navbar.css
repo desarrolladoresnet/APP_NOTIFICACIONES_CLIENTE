@@ -1,0 +1,154 @@
+/* Variables de colores */
+:root {
+    /* Colores base que proporcionaste */
+    --primary-blue: #3474fc;
+    --darker-blue: #2c48ff;
+    --dark-text: #1c1c1c;
+    --dark-alt: #201c1c;
+
+    /* Colores BDV (Banco de Venezuela) - Rojo y blanco */
+    --bdv-primary: #e31b23;
+    --bdv-secondary: #231f20;
+    --bdv-hover: #c0151d;
+
+    /* Colores Bancaribe - Naranja y azul */
+    --bancaribe-primary: #1b2c64;
+    /* Azul oscuro Bancaribe */
+    --bancaribe-secondary: #005baa;
+    /* Azul principal Bancaribe */
+    --bancaribe-hover: #1b2c64;
+    /* Mismo que primary para hover */
+    --bancaribe-active: #005baa;
+    /* Azul más claro para estado activo */
+
+    /* Otros colores y variables */
+    --white: #ffffff;
+    --light-gray: #f5f7fa;
+    --medium-gray: #e0e0e0;
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Estilo principal de la navegación */
+.navigation {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.5rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        justify-content: center;
+    }
+}
+
+.nav-item {
+    position: relative;
+}
+
+/* Estilos de botones */
+.nav-button {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: transparent;
+    color: var(--dark-text);
+}
+
+.nav-button .icon {
+    margin-right: 0.6rem;
+    font-size: 1.2rem;
+}
+
+/* Estilos específicos para cada botón */
+.home-btn {
+    color: var(--primary-blue);
+}
+
+.home-btn:hover {
+    background-color: rgba(52, 116, 252, 0.1);
+}
+
+.home-btn.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 2px 10px rgba(52, 116, 252, 0.3);
+}
+
+/* Estilos para BDV */
+.bdv-btn {
+    color: var(--bdv-primary);
+}
+
+.bdv-btn:hover {
+    background-color: rgba(227, 27, 35, 0.1);
+}
+
+.bdv-btn.active {
+    background-color: var(--bdv-primary);
+    color: var(--white);
+    box-shadow: 0 2px 10px rgba(227, 27, 35, 0.3);
+}
+
+/* Estilos para Bancaribe */
+.bancaribe-btn {
+    color: var(--bancaribe-primary);
+}
+
+.bancaribe-btn:hover {
+    background-color: rgba(27, 44, 100, 0.1);
+    /* 10% de opacidad del azul oscuro */
+}
+
+.bancaribe-btn.active {
+    background-color: var(--bancaribe-primary);
+    color: var(--white);
+    box-shadow: 0 2px 10px rgba(27, 44, 100, 0.3);
+}
+
+/* Efecto de indicador debajo de cada botón cuando está activo */
+.bancaribe-btn.active::after {
+    background-color: var(--bancaribe-secondary);
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 576px) {
+    .nav-button {
+        flex-direction: column;
+        padding: 0.6rem 1rem;
+    }
+
+    .nav-button .icon {
+        margin-right: 0;
+        margin-bottom: 0.3rem;
+        font-size: 1.4rem;
+    }
+
+    .nav-button .text {
+        font-size: 0.8rem;
+    }
+}

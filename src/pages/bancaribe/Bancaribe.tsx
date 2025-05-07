@@ -1,7 +1,10 @@
 import { BancaribePaymentsList } from "../../components/bancaribe/BancaribePaymentsList";
 import { FetchPaymentsBancaribe } from "../../components/bancaribe/fetchPaymentsBancaribe";
+import { BankLogo } from "../../components/banklogo/BankLogo";
 import { RequestParamsForm } from "../../components/requestParamsForm";
 import { RequestParams, useBancaribeStore } from "../../zustand";
+import BANCARIBELOGO from '../../assets/LogoBancaribe.png'
+
 
 export const BancaribePage = () => {
   const { BancaribePayments, pagination, success } = useBancaribeStore()
@@ -18,7 +21,11 @@ export const BancaribePage = () => {
     return (
       <section>
         <div>
-          <h2>Bancaribe</h2>
+        <BankLogo 
+          logo={BANCARIBELOGO} 
+          altText="Banco de Venezuela"
+          // onClick={() => console.log('Logo clicked')}
+        />
           <RequestParamsForm 
                       onSubmit={handleSubmit}
                       onPageChange={handlePageChange}
